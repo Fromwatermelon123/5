@@ -20,11 +20,11 @@ h1{font-size:22px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px;margin-bot
 <div class="grid" id="grid"></div>
 <script>
 // 串接 API：填入 TiDB Cloud Data Service 的 GET 端點即可（回傳需含 data 陣列或純陣列，欄位同 products.json）；留空則使用 data/products.json
-const API_URL="https://1-sandy-phi-14.vercel.app/api/products";
+const API_URL="https://5-rose-kappa.vercel.app/api/products";
 let P=[];
 const $=id=>document.getElementById(id);
 async function load(){
-  try{ if(API_URL){const r=await fetch(API_URL);const j=await r.json();P=Array.isArray(j)?j:(j.data?.rows||j.data||[]);$("src").textContent="資料來源：MySQL 資料庫（Aiven），透過 Vercel API 即時讀取";}
+  try{ if(API_URL){const r=await fetch(API_URL);if(!r.ok)throw 0;const j=await r.json();P=Array.isArray(j)?j:(j.data?.rows||j.data||[]);if(!P.length)throw 0;$("src").textContent="資料來源：MySQL 資料庫（Aiven），透過 Vercel API 即時讀取";}
   else throw 0; }catch(e){ const r=await fetch("data/products.json");P=await r.json();$("src").textContent="資料來源：data/products.json（由 MySQL clothing 資料表匯出）"; }
   [...new Set(P.map(p=>p.category))].forEach(c=>$("cat").add(new Option(c,c)));render();
 }
