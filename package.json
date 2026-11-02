@@ -1,0 +1,6 @@
+{
+  "name": "clothing-api",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": { "mysql2": "^3.9.0" }
+}
