@@ -9,7 +9,7 @@ h1{font-size:22px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px;margin-bot
 .bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.bar input,.bar select{padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font:inherit}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-.card .im{aspect-ratio:1/1;overflow:hidden;background:#eee}.card img{width:100%;height:100%;object-fit:cover;object-position:top}
+.card .im{aspect-ratio:1/1;overflow:hidden;background:#eee}.card img{width:100%;height:128%;object-fit:cover;object-position:top;display:block}
 .card .bd{padding:10px 12px}.nm{font-weight:600}.mt{color:var(--mut);font-size:12.5px}.pr{color:var(--ac);font-weight:700;font-size:17px}
 .tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--bd);margin-right:4px}.low{color:#c0392b;border-color:#c0392b}
 </style></head><body>
@@ -25,7 +25,7 @@ let P=[];
 const $=id=>document.getElementById(id);
 async function load(){
   try{ if(API_URL){const r=await fetch(API_URL);const j=await r.json();P=Array.isArray(j)?j:(j.data?.rows||j.data||[]);$("src").textContent="資料來源：TiDB Cloud API";}
-  else throw 0; }catch(e){ const r=await fetch("data/products.json");P=await r.json();$("src").textContent="資料來源：data/products.json（由 TiDB clothing 資料表匯出）"; }
+  else throw 0; }catch(e){ const r=await fetch("data/products.json");P=await r.json();$("src").textContent="資料來源：data/products.json（由 MySQL clothing 資料表匯出）"; }
   [...new Set(P.map(p=>p.category))].forEach(c=>$("cat").add(new Option(c,c)));render();
 }
 function render(){
